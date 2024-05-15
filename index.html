@@ -79,36 +79,9 @@
         .button:hover {
             background-color: #0056b3;
         }
-        .coin {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background-image: url('https://image.flaticon.com/icons/png/128/198/198308.png');
-            background-size: cover;
-            border-radius: 50%;
-            animation: spin 5s infinite linear;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .coin:nth-child(odd) {
-            top: -10%;
-            left: -10%;
-            animation-delay: -1s;
-        }
-        .coin:nth-child(even) {
-            bottom: -10%;
-            right: -10%;
-        }
     </style>
 </head>
-<body> 
-    <div class="coin"></div>
-    <div class="coin"></div>
-    <div class="coin"></div>
-    <div class="coin"></div>
-    <div class="coin"></div>
+<body>
     <div class="container">
         <h1>Jogo da Moeda - MecFly Co.</h1>
         <p>O Jogo da Moeda é um jogo onde cada jogador leva até 3 moedas e tenta adivinhar o total de moedas em jogo. Na primeira jogada, cada jogador deve levar pelo menos uma moeda. Nas jogadas seguintes, podem levar o que quiserem, incluindo nenhuma. O jogador que adivinhar corretamente o total de moedas ganha o jogo.</p>
@@ -144,26 +117,18 @@
                 moedasPorJogador.push(moedas);
             }
 
-            const totalMoedas = moedasPorJogador.reduce((total, moedas) => total + moedas, 0);
+            let totalMoedas = moedasPorJogador.reduce((total, moedas) => total + moedas, 0);
+            mostrarAnimacao(totalMoedas);
+        }
 
-            const palpite = parseInt(prompt("Quantas moedas você acha que estão em jogo? (Total para todos os jogadores)"));
-            if (isNaN(palpite) || palpite < 0) {
-                alert("Por favor, insira um número válido de moedas (maior ou igual a 0).");
-                return;
-            }
-
-            if (palpite === totalMoedas) {
-                let mensagemVencedor = "Parabéns! O total de moedas era " + totalMoedas + ". O(s) vencedor(es) é(são): ";
-                for (let i = 0; i < moedasPorJogador.length; i++) {
-                    if (moedasPorJogador[i] === palpite) {
-                        mensagemVencedor += nomesJogadores[i] + ", ";
-                    }
-                }
-                mensagemVencedor += ".";
-                alert(mensagemVencedor);
-            } else {
-                alert("Infelizmente, o total de moedas era " + totalMoedas + ". Ninguém acertou.");
-            }
+        function mostrarAnimacao(totalMoedas) {
+            const container = document.querySelector('.container');
+            container.innerHTML += `
+                <div class="moedas">
+                    <div class="total-moedas">${totalMoedas} moedas</div>
+                    <div class="moeda-euro"></div>
+                </div>
+            `;
         }
     </script>
 </body>
