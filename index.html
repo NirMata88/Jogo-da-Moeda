@@ -55,7 +55,30 @@
         function startGame() {
             // Código JavaScript para iniciar o jogo
             alert("Jogo iniciado! Boa sorte!");
-            // Você pode adicionar mais lógica JavaScript aqui conforme necessário
+            // Implementação simples do jogo da moeda
+            let jogadorAtual = 1;
+            let placarJogador1 = 0;
+            let placarJogador2 = 0;
+
+            while (placarJogador1 < 3 && placarJogador2 < 3) {
+                const moeda = Math.floor(Math.random() * 2); // 0 para cara, 1 para coroa
+                if (moeda === 0) {
+                    placarJogador1++;
+                } else {
+                    placarJogador2++;
+                }
+            }
+
+            // Determinar o vencedor
+            let vencedor;
+            if (placarJogador1 === 3) {
+                vencedor = "Jogador 1";
+            } else {
+                vencedor = "Jogador 2";
+            }
+
+            // Exibir o vencedor
+            alert("O jogo acabou! O vencedor é: " + vencedor);
         }
     </script>
 </body>
