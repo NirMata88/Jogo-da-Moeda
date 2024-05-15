@@ -45,7 +45,7 @@
     <div class="container">
         <h1>Jogo da Moeda - Meccafly Co.</h1>
         <div class="game-info">
-            <p>O Jogo da Moeda é um jogo simples onde cada jogador lança moedas e ganha pontos com base nas combinações de caras e coroas. Na primeira jogada, cada jogador deve levar pelo menos uma moeda. Nas jogadas seguintes, podem levar o que quiserem, incluindo nenhuma. Quando restarem apenas dois jogadores, eles devem jogar "melhor de 3" para determinar o vencedor.</p>
+            <p>O Jogo da Moeda é um jogo onde cada jogador leva até 3 moedas e tenta adivinhar o total de moedas em jogo. Na primeira jogada, cada jogador deve levar pelo menos uma moeda. Nas jogadas seguintes, podem levar o que quiserem, incluindo nenhuma. O jogador que adivinhar corretamente o total de moedas ganha o jogo.</p>
             <p>Pronto para jogar?</p>
             <a href="#" class="button" onclick="startGame()">Iniciar Jogo</a>
         </div>
@@ -55,30 +55,25 @@
         function startGame() {
             // Código JavaScript para iniciar o jogo
             alert("Jogo iniciado! Boa sorte!");
-            // Implementação simples do jogo da moeda
-            let jogadorAtual = 1;
-            let placarJogador1 = 0;
-            let placarJogador2 = 0;
 
-            while (placarJogador1 < 3 && placarJogador2 < 3) {
-                const moeda = Math.floor(Math.random() * 2); // 0 para cara, 1 para coroa
-                if (moeda === 0) {
-                    placarJogador1++;
-                } else {
-                    placarJogador2++;
-                }
+            // Obter o total de moedas em jogo
+            const totalMoedas = Math.floor(Math.random() * 9) + 1; // Gera um número aleatório de 1 a 9
+
+            // Solicitar a entrada do jogador
+            let palpite = prompt("Quantas moedas você acha que estão em jogo (1 a 9)?");
+
+            // Verificar se o palpite é válido
+            if (palpite === null || isNaN(palpite) || palpite < 1 || palpite > 9) {
+                alert("Por favor, insira um número válido de 1 a 9.");
+                return;
             }
 
-            // Determinar o vencedor
-            let vencedor;
-            if (placarJogador1 === 3) {
-                vencedor = "Jogador 1";
+            // Verificar se o jogador acertou
+            if (parseInt(palpite) === totalMoedas) {
+                alert("Parabéns! Você acertou o total de moedas: " + totalMoedas + ". Você venceu o jogo!");
             } else {
-                vencedor = "Jogador 2";
+                alert("Que pena! O total de moedas era " + totalMoedas + ". Melhor sorte na próxima vez!");
             }
-
-            // Exibir o vencedor
-            alert("O jogo acabou! O vencedor é: " + vencedor);
         }
     </script>
 </body>
