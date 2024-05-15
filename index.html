@@ -79,6 +79,31 @@
         .button:hover {
             background-color: #0056b3;
         }
+        .moedas {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .total-moedas {
+            font-size: 20px;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        .moeda-euro {
+            width: 100px;
+            height: 100px;
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/1_euro_obverse.png/200px-1_euro_obverse.png');
+            background-size: cover;
+            animation: girarMoeda 2s infinite;
+            margin: 0 auto;
+        }
+        @keyframes girarMoeda {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
     </style>
 </head>
 <body>
@@ -93,6 +118,7 @@
 
         <button class="button" onclick="iniciarJogo()">Iniciar Jogo</button>
     </div>
+
     <script>
         function iniciarJogo() {
             const numeroJogadores = parseInt(document.getElementById("numeroJogadores").value);
@@ -117,18 +143,25 @@
                 moedasPorJogador.push(moedas);
             }
 
-            let totalMoedas = moedasPorJogador.reduce((total, moedas) => total + moedas, 0);
-            mostrarAnimacao(totalMoedas);
-        }
+            let totalMoedas = moedasPorJogador.reduce((acc, cur) => acc + cur, 0);
+            const palpiteTotal = parseInt(prompt("Quantas moedas você acha que estão em jogo?"));
+            if (isNaN(palpiteTotal)) {
+                alert("Por favor, insira um número válido para o total de moedas em jogo.");
+                return;
+            }
 
-        function mostrarAnimacao(totalMoedas) {
-            const container = document.querySelector('.container');
-            container.innerHTML += `
-                <div class="moedas">
-                    <div class="total-moedas">${totalMoedas} moedas</div>
-                    <div class="moeda-euro"></div>
-                </div>
-            `;
+            let vencedor = false;
+            for (let i = 0; i < nomesJogadores.length; i++) {
+                if (palpiteTotal === totalMoedas) {
+                    alert("Parabéns, " + nomesJogadores[i] + "! Você acertou o total de moedas em jogo e ganhou o jogo!");
+                    vencedor = true;
+                    break;
+                }
+            }
+
+            if (!vencedor) {
+                alert("Nenhum jogador acertou o total de moedas em jogo. O total de moedas era: " + totalMoedas);
+            }
         }
     </script>
 </body>
