@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-PT">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,6 +38,7 @@
             margin-bottom: 5px;
             font-weight: bold;
         }
+        input[type="text"],
         input[type="number"] {
             width: 100%;
             padding: 10px;
@@ -67,8 +68,8 @@
         <p>O Jogo da Moeda é um jogo onde cada jogador leva até 3 moedas e tenta adivinhar o total de moedas em jogo. Na primeira jogada, cada jogador deve levar pelo menos uma moeda. Nas jogadas seguintes, podem levar o que quiserem, incluindo nenhuma. O jogador que adivinhar corretamente o total de moedas ganha o jogo.</p>
         
         <div class="input-group">
-            <label for="numeroJogadores">Quantos jogadores estão participando?</label>
-            <input type="number" id="numeroJogadores" min="1" max="5">
+            <label for="numeroJogadores">Quantos jogadores estão participando? (Entre 2 e 10)</label>
+            <input type="number" id="numeroJogadores" min="2" max="10">
         </div>
 
         <button class="button" onclick="iniciarJogo()">Iniciar Jogo</button>
@@ -78,20 +79,27 @@
         function iniciarJogo() {
             const numeroJogadores = parseInt(document.getElementById("numeroJogadores").value);
 
-            if (isNaN(numeroJogadores) || numeroJogadores < 1 || numeroJogadores > 5) {
-                alert("Por favor, insira um número válido de jogadores (entre 1 e 5).");
+            if (isNaN(numeroJogadores) || numeroJogadores < 2 || numeroJogadores > 10) {
+                alert("Por favor, insira um número válido de jogadores (entre 2 e 10).");
                 return;
             }
 
+            let nomesJogadores = [];
             let moedasPorJogador = [];
+
             for (let i = 1; i <= numeroJogadores; i++) {
-                let moedas = parseInt(prompt("Jogador " + i + ", quantas moedas você tem? (Máximo 3 moedas)"));
+                let nome = prompt("Nome do Jogador " + i + ":");
+                nomesJogadores.push(nome);
+
+                let moedas = parseInt(prompt("Jogador " + nome + ", quantas moedas você tem? (Máximo 3 moedas)"));
                 if (isNaN(moedas) || moedas < 1 || moedas > 3) {
-                    alert("Por favor, insira um número válido de moedas (entre 1 e 3) para o jogador " + i + ".");
+                    alert("Por favor, insira um número válido de moedas (entre 1 e 3) para o jogador " + nome + ".");
                     return;
                 }
                 moedasPorJogador.push(moedas);
             }
+
+            const totalMoedas = moedasPorJogador.reduce((total, moedas) => total + moedas, 0);
 
             const palpite = parseInt(prompt("Quantas moedas você acha que estão em jogo?"));
             if (isNaN(palpite) || palpite < 0) {
@@ -99,10 +107,15 @@
                 return;
             }
 
-            const totalMoedas = moedasPorJogador.reduce((total, moedas) => total + moedas, 0);
-
             if (palpite === totalMoedas) {
-                alert("Parabéns! Você acertou o total de moedas: " + totalMoedas + ". Você venceu o jogo!");
+                let mensagemVencedor = "Parabéns! O total de moedas era " + totalMoedas + ". O(s) vencedor(es) é(são): ";
+                for (let i = 0; i < moedasPorJogador.length; i++) {
+                    if (moedasPorJogador[i] === palpite) {
+                        mensagemVencedor += nomesJogadores[i] + ", ";
+                    }
+                }
+                mensagemVencedor = mensagemVencedor.slice(0, -2) + ". Você(s) venceu(ram) o jogo!";
+                alert(mensagemVencedor);
             } else {
                 alert("Que pena! O total de moedas era " + totalMoedas + ". Melhor sorte na próxima vez!");
             }
