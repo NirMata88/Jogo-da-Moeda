@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NirData - Soluções em Data Science</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #161b22;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 {
+            color: #58a6ff;
+            margin: 0;
+        }
+        nav {
+            margin: 20px 0;
+            text-align: center;
+        }
+        nav a {
+            color: #58a6ff;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .hero {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .hero img {
+            max-width: 100%;
+            height: auto;
+        }
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #58a6ff;
+            text-align: center;
+        }
+        .advantages {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        .advantage {
+            background-color: #21262d;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 10px;
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        .advantage img {
+            max-width: 100px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+        footer {
+            background-color: #161b22;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+        footer p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>NirData</h1>
+        <nav>
+            <a href="#">Início</a>
+            <a href="#">Sobre</a>
+            <a href="#">Serviços</a>
+            <a href="#">Contato</a>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="hero">
+            <img src="https://via.placeholder.com/1200x400?text=NirData+Solutions" alt="NirData Solutions">
+        </div>
+        <section>
+            <h2 class="section-title">Vantagens de Trabalhar com Dados</h2>
+            <div class="advantages">
+                <div class="advantage">
+                    <img src="https://via.placeholder.com/100?text=1" alt="Visualização de Dados">
+                    <h3>Visualização de Dados</h3>
+                    <p>Transforme dados complexos em insights visuais claros e acionáveis.</p>
+                </div>
+                <div class="advantage">
+                    <img src="https://via.placeholder.com/100?text=2" alt="Análise Preditiva">
+                    <h3>Análise Preditiva</h3>
+                    <p>Antecipe tendências e tome decisões baseadas em dados precisos.</p>
+                </div>
+                <div class="advantage">
+                    <img src="https://via.placeholder.com/100?text=3" alt="Otimização de Processos">
+                    <h3>Otimização de Processos</h3>
+                    <p>Aumente a eficiência operacional com soluções baseadas em dados.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+    <footer>
+        <p>&copy; 2024 NirData. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
